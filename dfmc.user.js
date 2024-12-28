@@ -1,8 +1,9 @@
 // ==UserScript==
 // @name         Dont fuck my clipboard
 // @namespace    https://github.com/KoishiMoe/dont-fxxk-my-clipboard/
-// @version      0.2
+// @version      0.4
 // @description  Prevents some annoying websites from fucking your clipboard
+// @description:zh-CN 阻止一些恶心网站篡改你的剪贴板
 // @author       KoishiMoe & Gemini
 // @downloadURL  https://raw.githubusercontent.com/KoishiMoe/dont-fxxk-my-clipboard/refs/heads/main/dfmc.user.js
 // @require      https://cdn.jsdelivr.net/npm/toastify-js
@@ -23,9 +24,9 @@
             text: message,
             duration: 3000,
             close: true,
-            gravity: "top",
-            position: "right",
-            stopOnFocus: true,
+            gravity: "top", // `top` or `bottom`
+            position: "right", // `left`, `center` or `right`
+            stopOnFocus: false,
             style: {
                 background: type === 'success' ? "linear-gradient(to right, #00b09b, #96c93d)" :
                            type === 'error' ? "#f93154" :
@@ -42,13 +43,13 @@
 
     navigator.clipboard.write = async function() {
         console.warn('Clipboard write attempt blocked (using write method).');
-        showToast('Clipboard write blocked!', 'error');
+        showToast(getTranslatedMessage('Blocked an attempt to change your clipboard!'), 'error');
         return Promise.resolve();
     };
 
     navigator.clipboard.writeText = async function() {
         console.warn('Clipboard write attempt blocked (using writeText method).');
-        showToast('Clipboard write blocked!', 'error');
+        showToast(getTranslatedMessage('Blocked an attempt to change your clipboard!'), 'error');
         return Promise.resolve();
     };
 
@@ -63,7 +64,7 @@
     document.execCommand = function(command) {
         if (command === 'copy') {
             console.warn('Clipboard copy attempt blocked (using execCommand).');
-            showToast('Clipboard copy blocked!', 'error');
+            showToast(getTranslatedMessage('Blocked an attempt to hijack your copy action!'), 'error');
             return false;
         }
 
@@ -85,13 +86,36 @@
     window.addEventListener('copy', function (e) {
         e.stopImmediatePropagation(); // Try to stop other listeners
         console.warn("Copy event intercepted. Modification prevented (hopefully).");
-        showToast('Copy event intercepted!', 'warning');
+        showToast(getTranslatedMessage('Stopped a sneaky attempt to change your copied content!'), 'warning');
     });
 
     window.addEventListener('cut', function (e) {
         console.warn('Cut event triggered, likely legitimate user action.');
-        showToast('Cut event triggered!', 'success');
+        showToast(getTranslatedMessage('You cut some text.'), 'success');
     });
 
     console.log('Clipboard protection loaded');
+
+    function getTranslatedMessage(message) {
+        const translations = {
+            'Blocked an attempt to change your clipboard!': {
+                'zh-CN': '已阻止网站修改剪贴板'
+            },
+            'Blocked an attempt to hijack your copy action!': {
+                'zh-CN': '已阻止网站劫持复制操作'
+            },
+            'Stopped a sneaky attempt to change your copied content!': {
+                'zh-CN': '已阻止网站修改复制内容'
+            },
+            'You cut some text. Everything\'s normal!': {
+                'zh-CN': '您剪切了一些文本'
+            }
+        };
+
+        const language = navigator.language;
+        if (translations[message] && translations[message][language]) {
+            return translations[message][language];
+        }
+        return message; // Default to English if no translation found
+    }
 })();
