@@ -11,7 +11,7 @@
 
 [Github](https://github.com/KoishiMoe/dont-fxxk-my-clipboard/raw/refs/heads/main/dfmc.user.js) 能正常访问github的推荐使用
 
-[jsdelivr](https://cdn.jsdelivr.net/gh/KoishiMoe/dont-fxxk-my-clipboard@master/dfmc.user.min.js) 不能正常访问github的请使用这个
+[jsdelivr](https://cdn.jsdelivr.net/gh/KoishiMoe/dont-fxxk-my-clipboard@master/dfmc.user.js) 不能正常访问github的请使用这个
 
 
 ### 网站适配
