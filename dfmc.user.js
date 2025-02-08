@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Dont fuck my clipboard
 // @namespace    https://github.com/KoishiMoe/dont-fxxk-my-clipboard/
-// @version      0.4.1
+// @version      0.4.2
 // @description  Prevents some annoying websites from fucking your clipboard
 // @description:zh-CN 阻止一些恶心网站篡改你的剪贴板
 // @author       KoishiMoe & Gemini
@@ -12,6 +12,7 @@
 // @match        *://*.lofter.com/*
 // @match        *://*.123pan.com/*
 // @include      /\.123\d{3}\.com\//
+// @include      /\.lanzou\w\.com\//
 // @grant        GM_addStyle
 // @grant        GM_getResourceText
 // ==/UserScript==
