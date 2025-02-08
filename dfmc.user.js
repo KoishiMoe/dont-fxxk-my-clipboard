@@ -1,11 +1,10 @@
 // ==UserScript==
 // @name         Dont fuck my clipboard
 // @namespace    https://github.com/KoishiMoe/dont-fxxk-my-clipboard/
-// @version      0.4.2
+// @version      0.5.0
 // @description  Prevents some annoying websites from fucking your clipboard
 // @description:zh-CN 阻止一些恶心网站篡改你的剪贴板
 // @author       KoishiMoe & Gemini
-// @downloadURL  https://raw.githubusercontent.com/KoishiMoe/dont-fxxk-my-clipboard/refs/heads/main/dfmc.user.js
 // @require      https://cdn.jsdelivr.net/npm/toastify-js
 // @resource     toastifyCSS https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css
 // @match        *://m.bilibili.com/*
